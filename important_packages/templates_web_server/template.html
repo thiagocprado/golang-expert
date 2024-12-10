@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Course listing page" />
+    <title>Courses</title>
+    <!-- Preload fonts if you're using custom fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Cursos</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Horas</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range . }}
+          <tr>
+            <td>{{ .Name }}</td>
+            <td>{{ .Hours }}</td>
+          </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>

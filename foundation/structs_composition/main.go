@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 
+// go não possuí herança, mas podemos compor structs
+// chamamos de composição
+
 type Address struct {
 	Street string
 	Number int
@@ -21,7 +24,8 @@ type Client struct {
 	Active bool
 	// Se tiver o mesmo nome da struct, podemos simplificar a escrita
 	Address
-	Account Account
+	// structs podem servir como tipo também
+	Conta Account
 }
 
 func main() {
@@ -31,7 +35,11 @@ func main() {
 		Active: true,
 	}
 
-	thiago.Address.City = "Franca"
+	// mesmo resultado
+	thiago.City = "Franca"
+	thiago.Address.State = "SP"
+
+	thiago.Conta.Number = 123456
 
 	fmt.Printf("Nome: %s, Idade: %d, Ativo: %v", thiago.Name, thiago.Age, thiago.Active)
 }

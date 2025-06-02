@@ -16,7 +16,7 @@ type Client struct {
 // assim nós podemos atribuir métodos a uma struct, como se fosse os métodos de uma classe
 func (c Client) Deactivate() {
 	c.Active = false
-	fmt.Printf("O cliente %s foi desativado", c.Name)
+	fmt.Printf("O cliente %s foi desativado / status %v", c.Name, c.Active)
 }
 
 func main() {

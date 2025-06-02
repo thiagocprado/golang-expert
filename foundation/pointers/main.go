@@ -1,40 +1,53 @@
 package main
 
+import "fmt"
+
 func main() {
-	// * declara um pointeiro
+	// Imagine que uma variável é uma caixa com um valor dentro.
+
+	// Essa caixa fica guardada em um endereço na memória do computador.
+
+	// Quando usamos um ponteiro, estamos guardando o endereço dessa caixa, não o valor.
+
+	// Assim, podemos ir até lá e ver ou mudar o valor direto na caixa.
+
+	// * declara um ponteiro
 	// & obtém o endereço de memória de uma variável
 
-	// os ponteiros permitem trabalhar em um escopo mais amplo, pois pegamos o valor no endereço na memória
+	// Conceito: a memória pode ser imaginada como uma "caixa".
+	// Cada caixa tem um endereço e dentro dela está armazenado um valor.
 
-	// memória -> endereço -> valor
-	// abre uma "caixa" na memória, essa "caixa" tem um endereço e o valor está dentro dela
-	// se quiser saber o valor, vai na caixa e pega o valor
+	// Declarando uma variável comum:
 	a := 10
-	// valor dentro da "caixa"
-	println(a)
+	fmt.Println("1) Valor inicial de a:", a)
 
-	// nesse caso estamos trabalhando com uma cópia de 'a' que não referencia o valor real dela, por isso o mesmo não é alterado
+	// Criando uma cópia de 'a':
 	c := a
-	c = 40
-	println(c)
-	println(a)
+	c = 40 // Alteramos a cópia
+	fmt.Println("2) Valor de c (cópia de a):", c)
+	fmt.Println("3) Valor de a continua o mesmo:", a)
 
-	// endereço da "caixa"
-	println(&a)
+	// Pegando o endereço de memória onde 'a' está guardado:
+	fmt.Println("4) Endereço de memória de a:", &a)
 
-	// variavel aponta para um ponteiro que tem um endereço na memória que tem um valor
-	// o * se refere ao endereçamento da memória
+	// Criando um ponteiro que aponta para 'a':
 	var pointer *int = &a
-	println(pointer)
+	fmt.Println("5) Ponteiro que aponta para a:", pointer)
 
-	// Desreferenciação - acessamos ou alteramos o valor de uma variável
-	// aqui estamos realmente apontando pro valor real de 'a', pois vamos no endereço de memória e fazemos a alteração
+	// Usando o ponteiro para acessar o valor dentro de 'a':
+	fmt.Println("6) Valor de a acessado pelo ponteiro:", *pointer)
+
+	// Agora, vamos mudar o valor de 'a' usando o ponteiro:
 	*pointer = 99
-	println(a)
+	fmt.Println("7) Novo valor de a após mudança via ponteiro:", a)
 
+	// Criando outro ponteiro para 'a':
 	b := &a
+	// Alterando o valor de 'a' usando o segundo ponteiro:
 	*b = 30
-	// o * pega o valor que está na memória, sem ele, nós pegamos o endereço da memória
-	println(a)
+	fmt.Println("8) Novo valor de a após mudança via ponteiro b:", a)
 
+	// Resumo:
+	// - Sem ponteiro: mexemos só na cópia.
+	// - Com ponteiro: mexemos direto na variável original.
 }

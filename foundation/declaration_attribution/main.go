@@ -18,7 +18,8 @@ var (
 
 func main() {
 	// temos também a inferência de tipos
-	// essa declaração é feita apena a primeira vez
+	// essa declaração é feita apenas a primeira vez
+	// short-hand (atalho)
 	str := "string"
 	integer := 10
 

@@ -14,7 +14,7 @@ func sum[T int | float64](m map[string]T) T {
 type MyNumber int
 
 type Number interface {
-	// com o tio, conseguimos abrir uma exceção para "outros tipos" de int, como é o caso do MyNumber
+	// com o til, conseguimos abrir uma exceção para "outros tipos" de int, como é o caso do MyNumber
 	~int | ~float64
 }
 
@@ -24,7 +24,7 @@ type Client[T Number] struct {
 	Name string
 }
 
-// constraints
+// constraints são utilizadas para limitar os tipos que podem ser utilizados com generics
 func sum2[T Number](m map[string]T) T {
 	var sum T
 

@@ -16,6 +16,12 @@ func Sum(numbers ...int) int {
 	}
 	fmt.Println(car)
 
+	newBike := bike{
+		name: "Yamaha",
+		year: 2020,
+	}
+	fmt.Println(newBike)
+
 	return total
 }
 
@@ -30,5 +36,10 @@ var GlobalVar string
 // o mesmo vale para nomes de funções e structs
 type Car struct {
 	Name string
+	year int
+}
+
+type bike struct {
+	name string
 	year int
 }

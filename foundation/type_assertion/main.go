@@ -20,6 +20,7 @@ func main() {
 	res, ok := myVar.(int)
 	fmt.Printf("O valor de res é %v e o resultado de ok é %v\n", res, ok)
 
+	// se não tivermos o 'ok' o programa irá quebrar para garantir a tipagem forte
 	res, ok = myVar2.(int)
 	fmt.Printf("O valor de res é %v e o resultado de ok é %v", res, ok)
 }

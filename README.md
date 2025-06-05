@@ -133,7 +133,9 @@ Boas práticas:
 ## ✅ Como funciona o runtime do Go?
 
 ```
-Código Go (src/) + Runtime do Go = Arquivo binário
+Código GO + Nosso Código = Arquivo binário
+ RUNTIME
+   src/
 ```
 
 * O **arquivo binário** pode ser compilado para diferentes **sistemas operacionais** e **arquiteturas**.
@@ -283,3 +285,11 @@ GOOS=linux GOARCH=amd64 go build -o app-linux
 ✅ Go é simples, poderosa e eficiente.
 ✅ Focada em produtividade, desempenho e facilidade de manutenção.
 ✅ Ideal para aplicações modernas, especialmente na **nuvem**.
+
+
+// TO-DO
+pesquisar sobre as ferramentas do go para vscode e adicionar um resumo delas aqui 
+
+pesquisar o porque generecis podem ser um problema
+
+// colocar também sobre go.mod e go.sum

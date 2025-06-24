@@ -19,7 +19,8 @@ func main() {
 	// através da rota é chamada uma função
 	http.HandleFunc("/", SearchCepHandler)
 
-	// multiplexer - basicamente é atracar funções a um componente, nesse caso estamos usando o padrão global do go
+	// multiplexer - basicamente é atracar funções a um componente, nesse caso
+	// estamos usando o padrão global do go
 	http.ListenAndServe(":8080", nil)
 }
 

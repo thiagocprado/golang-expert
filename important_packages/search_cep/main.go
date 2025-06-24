@@ -29,7 +29,7 @@ func main() {
 	for _, cep := range os.Args[1:] {
 		req, err := http.Get("http://viacep.com.br/ws/" + cep + "/json/")
 		if err != nil {
-			// joga o resultado para algum lugar
+			// joga o resultado para algum lugar, nesse caso para o stderr
 			fmt.Fprintf(os.Stderr, "Erro ao fazer a requisição: %v\n", err)
 		}
 		defer req.Body.Close()
@@ -40,7 +40,6 @@ func main() {
 		}
 
 		var address ViaCEP
-
 		err = json.Unmarshal(res, &address)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Erro ao fazer o parse da resposta: %v\n", err)

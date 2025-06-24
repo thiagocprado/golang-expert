@@ -3,40 +3,43 @@ package main
 import "net/http"
 
 func main() {
-	// Criamos um multiplexer (mux), que é responsável por rotear as solicitações HTTP
-	// para diferentes handlers com base nos caminhos (URLs).
+	// Criamos um novo *ServeMux*, que é um roteador de requisições HTTP.
+	// Ele permite associar diferentes caminhos (URLs) a diferentes handlers.
+	// Isso oferece mais controle do que usar o mux padrão do pacote http.
 	mux := http.NewServeMux()
 
-	// Registramos o handler "HomeHandler" para o caminho raiz ("/").
-	mux.HandleFunc("/", HomeHandler) // HandleFunc associa funções ao mux.
+	// Associa a função HomeHandler ao caminho raiz ("/").
+	// Sempre que uma requisição for feita a "/", essa função será executada.
+	mux.HandleFunc("/", HomeHandler)
 
-	// Registramos o handler "blog", que é uma struct que implementa a interface http.Handler.
-	// Aqui, o caminho "/blog" será tratado pela struct "blog".
+	// Associa o caminho "/blog" a uma instância da struct "blog",
+	// que implementa a interface http.Handler.
+	// Isso demonstra como structs podem ser usadas como manipuladores personalizados.
 	mux.Handle("/blog", blog{title: "My Blog!"})
 
-	// Inicia o servidor HTTP na porta 8080 e usa o mux para gerenciar as solicitações.
-	// Ao invés de usarmos o mux goblal do go, criamos o nosso próprio para termos mais controle sobre ele
-	// O mux padrão pode permitir que outros pacotes injetem coisas que não queremos
-	// Também não nos permite criar servidores diferentes
+	// Inicia o servidor HTTP na porta 8080 utilizando o mux criado como roteador.
+	// Ao usar um ServeMux próprio (em vez do padrão), ganhamos isolamento,
+	// mais controle sobre as rotas e podemos criar múltiplos servidores se necessário.
 	http.ListenAndServe(":8080", mux)
 }
 
-// HomeHandler é uma função que será chamada sempre que uma solicitação for feita ao caminho "/".
+// HomeHandler trata requisições feitas ao caminho "/".
+// Ele envia uma resposta simples com o texto "Hello World!".
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	// Escreve a resposta "Hello World!" no corpo da resposta HTTP.
 	w.Write([]byte("Hello World!"))
 }
 
-// blog é uma struct que define um blog com um título.
+// blog é uma struct que representa um blog com um título.
 type blog struct {
 	title string
 }
 
-// ServeHTTP é um método da struct "blog" que implementa a interface http.Handler.
-// Ele será chamado automaticamente quando houver uma solicitação para o caminho "/blog".
+// ServeHTTP implementa a interface http.Handler para a struct blog.
+// Esse método será chamado sempre que uma requisição for feita ao caminho "/blog".
 func (b blog) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	// Escreve o título do blog no corpo da resposta HTTP.
 	w.Write([]byte(b.title))
 }
 
-// essa abordagem permite uma customização maior, porém teriamos diversas structs
+// Essa abordagem, utilizando structs como handlers, permite maior flexibilidade
+// e encapsulamento. No entanto, pode resultar em muitas structs se o número de
+// rotas e comportamentos personalizados crescer muito.

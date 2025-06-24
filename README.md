@@ -288,8 +288,8 @@ GOOS=linux GOARCH=amd64 go build -o app-linux
 
 
 // TO-DO
-pesquisar sobre as ferramentas do go para vscode e adicionar um resumo delas aqui 
+- pesquisar sobre as ferramentas do go para vscode e adicionar um resumo delas aqui 
 
-pesquisar o porque generecis podem ser um problema
+- pesquisar o porque generecis podem ser um problema
 
-// colocar também sobre go.mod e go.sum
+- colocar também sobre go.mod e go.sum

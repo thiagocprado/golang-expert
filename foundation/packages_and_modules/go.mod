@@ -1,5 +1,5 @@
 // os módulos podem ter o path do github, pois o mesmo pode ser baixado por outras pessoas
-module foundation
+module packages_and_modules
 
 go 1.23.3
 

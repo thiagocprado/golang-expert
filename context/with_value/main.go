@@ -7,14 +7,20 @@ import (
 
 func main() {
 	ctx := context.Background()
-	// aqui trabalhamos com chave valor
-	ctx = context.WithValue(ctx, "token", "senha")
+
+	// context.WithValue adiciona um valor ao contexto usando o esquema chave-valor.
+	// Pode ser útil para passar informações como tokens, IDs ou configurações entre funções.
+	// ⚠️ Mas evite usar para dados que podem ser passados como argumento direto. Use com moderação.
+	ctx = context.WithValue(ctx, "token", "senha123")
+
 	bookHotel(ctx)
 }
 
 func bookHotel(ctx context.Context) {
-	// através do valor da chave, conseguimos recuperar seu valor
-	// mas é preciso ter cuidado, com os valores das chaves
+	// ctx.Value permite recuperar o valor associado a uma chave
+	// É importante garantir que a chave seja única (de preferência, um tipo próprio)
 	token := ctx.Value("token")
-	fmt.Println(token)
+
+	// Aqui estamos apenas imprimindo o valor recuperado
+	fmt.Println("Token recebido:", token)
 }

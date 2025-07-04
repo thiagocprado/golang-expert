@@ -21,7 +21,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 	defer res.Body.Close()
 
 	io.Copy(os.Stdout, res.Body)

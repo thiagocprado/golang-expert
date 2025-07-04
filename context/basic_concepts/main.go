@@ -7,25 +7,30 @@ import (
 )
 
 func main() {
-	// No Go, contexto (context) é usado para controlar prazos, cancelamentos e metadados em operações que podem ser interrompidas,
-	// como chamadas de API, goroutines ou processamento de dados.
+	// Context é usado para controlar o tempo de execução de algo:
+	// por exemplo, cancelar uma operação se ela demorar demais.
+	// Muito útil em chamadas de API, goroutines, etc.
 
 	ctx := context.Background()
 
+	// Cria um contexto com limite de 3 segundos.
+	// Depois disso, ele é cancelado automaticamente.
 	ctx, cancel := context.WithTimeout(ctx, time.Second*3)
-	defer cancel()
+	defer cancel() // Garante que os recursos do contexto serão liberados
 
 	bookHotel(ctx)
 }
 
-// variaveis de contexto sempre são o primeiro parâmetro da função
+// A convenção em Go é passar o contexto como o primeiro parâmetro
 func bookHotel(ctx context.Context) {
+	// Funciona como um switch, mas é usado para esperar por múltiplos canais ao mesmo tempo
 	select {
 	case <-ctx.Done():
-		fmt.Println("Hotel booking cancelled. Timeout reached.")
+		// Isso acontece se o contexto for cancelado antes da operação terminar
+		fmt.Println("Reserva de hotel cancelada. Tempo esgotado.")
 		return
-
 	case <-time.After(1 * time.Second):
-		fmt.Println("Hotel booked.")
+		// Simula uma operação que demora 1 segundo (ex: reservar hotel)
+		fmt.Println("Hotel reservado com sucesso.")
 	}
 }

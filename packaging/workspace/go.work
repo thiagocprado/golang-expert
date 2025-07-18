@@ -1,0 +1,17 @@
+// o go.work define o workspace do Go, permitindo que você trabalhe com múltiplos módulos Go.
+
+// Ele é usado para gerenciar dependências entre módulos e facilitar o desenvolvimento
+// de projetos maiores.
+
+// Este arquivo deve ser colocado na raiz do seu workspace Go.
+
+// Você pode adicionar módulos ao workspace usando o comando `go work use <path>`.
+
+// Neste exemplo, estamos incluindo dois módulos: math e system.
+
+go 1.24.3
+
+use (
+	./math
+	./system
+)
